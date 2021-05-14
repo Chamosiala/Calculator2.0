@@ -103,6 +103,32 @@ namespace Calculator2._0
             addition = true;
             previouslyOperated = true;
         }
+        private void SubtractionButton_Click(object sender, EventArgs e)
+        {
+            if (CalculatorScreen.Text == "")
+                CalculatorScreen.Text = "0";
+
+            if (currentNum == 0)
+                currentNum = Convert.ToDecimal(CalculatorScreen.Text);
+            else if (previouslyOperated)
+                CheckPreviousOperation();
+            else
+                try
+                {
+                    currentNum -= Convert.ToDecimal(CalculatorScreen.Text);
+                }
+                catch (FormatException)
+                {
+                    CalculatorScreen.Text = "0";
+                    currentNum -= Convert.ToDecimal(CalculatorScreen.Text);
+                }
+
+            CheckEqual("-");
+
+            CalculatorScreen.Text = "";
+            subtraction = true;
+            previouslyOperated = true;
+        }
         private void DivisionButton_Click(object sender, RoutedEventArgs e)
         {
             if (CalculatorScreen.Text == "")
